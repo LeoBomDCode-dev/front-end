@@ -14,6 +14,23 @@ navigator.mediaDevices.getUserMedia({ video: true})
 
    button.addEventListener("click", () => {
         //desenhar o quadro atual do vídeo na área do canvas
-        contexto.drawImage(video, 0, 0, canvas.width, canvas.height)    
+        contexto.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        //obter a imagem como um url de dados
+        const imageDataURL = canvas.toDataURl("image/png");
+        //enviar imagem para um servidor
+        enviarImagemParaServidor(imageDataURL);
    })
 
+   //função para enviar imagem para um servidor
+function enviarImagemParaServidor(imageDataURL){};
+   //simular o envio para um servidor
+   console.log("Enviando imagem para o servidor...");
+
+   fetch("/", {
+    method: "POST",
+    body: JSON.stringify({image: imageDataURL}),
+    headers: {
+        "Content-type": "application/json"    
+      }
+   })
